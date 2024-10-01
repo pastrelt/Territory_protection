@@ -2,4 +2,10 @@ from abc import ABC, abstractmethod
 
 
 class AbstractCamera(abc):
-    pass
+    @abstractmethod
+    def start(self):
+        pass
+
+    @abstractmethod
+    def sending_video_stream(self):
+        pass
