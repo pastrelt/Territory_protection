@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from Camerаs.DefaultCameraProcessing import *
 #from Chat import ServerInterface
 import logging
 import requests  # Импортируем библиотеку для HTTP-запросов
@@ -31,8 +32,12 @@ class AbstractCamera(ABC):
             if not ret:
                 break
 
-            edges = self.process_frame(frame)
-            self.detect_obstacle(edges)
+            ex_edges = DefaultCameraProcessing
+            edges = ex_edges.process_frame(None,frame)
+            ex_edges.detect_obstacle(None, edges, self.camera_index)
+
+            #edges = self.process_frame(frame)
+            #self.detect_obstacle(edges)
 
             cv2.imshow(f'Камера {self.camera_index}', edges)
 

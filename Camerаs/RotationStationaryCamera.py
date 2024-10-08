@@ -1,4 +1,4 @@
-from AbstractCamera import *
+from Camerаs.AbstractCamera import *
 
 
 class RotationStationaryCamera(AbstractCamera):
