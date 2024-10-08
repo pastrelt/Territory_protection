@@ -3,8 +3,14 @@ from Drone import *
 
 
 class DroneCamera(AbstractCamera):
-    def start(self):# включение камеры
-        pass
+    """
+        Класс описания работы камеры дрона.
+    """
+    def camera_information(self):
+        camera_index = 1
+        camera_stop_flag = False
+        camera_coordinates = {"latitude": -250.0, "longitude": 150.0}
+        start_camera = SimpleStationaryCamera.get_information(None, camera_index, camera_coordinates, camera_stop_flag)
 
-    def sending_video_stream(self):# отправка видеопотока Drone.py
-        pass
+
+SimpleStationaryCamera.camera_information()
