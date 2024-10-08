@@ -1,52 +1,22 @@
-from Sersver import ServerInterface
+from Sersver.MesagePool import *
+import requests  # Импортируем библиотеку для HTTP-запросов
+
+BASE_URL = 'http://localhost:5000'
+
 
 class ServerInterface:
     """
-    Класс взаимодействия сервера с разлчными устройствами: камерой, дроном ...
+    Класс получения сервером информации с разлчных устройств: камеры, дрона ...
     """
-    def data_sorting(self):# сортировка данных по источникам получения
-        pass
+    def __init__(self, data):
+        self.data = data
 
-    def transfer_data_storage(self):# отправка данных в архив MesagePool
-         pass
-
-    @app.route("/camera_interface", methods=["POST"])
-    def camera_interface():
+    def sending_information(self):
         """
-        Метод обрабатывае запрос камеры и если он подтверждается неоднократно (>100) отправляет дрон
-        для съемки объекта нарушения, передавая координаты камеры.
+        Отправка сообщений в архив сервера MesagePool
         """
-
-
-
-
-
-
-
-
-
-
-
-
-
-        global camera_request_count
-        data = request.get_json()
-        # Проверка наличия необходимых данных
-        if 'camera_index' not in data or 'coordinates' not in data:
-            logging.error('Некорректные данные: %s', data)
-            return jsonify({'error': 'Некорректные данные'}), 400
-
-        camera_index = data['camera_index']
-        coordinates = data['coordinates']
-
-        # Увеличение счетчика запросов для соответствующей камеры
-        camera_request_count[str(camera_index)] += 1
-
-        objective_control = 100# реагируем если событие повторяется более 100 раз, исключая случайности
-        if camera_request_count[str(camera_index)] > objective_control:
-            # Инициализируем управление дроном
-            drone = drone_control(coordinates)
-            # Сброс счетчика после отправки команды дрону
-            camera_request_count[str(camera_index)] = 0
-
-        return jsonify({'message': 'Уведомление получено'}), 200
+        response = requests.post(f'{BASE_URL}/sending_information ', json=self.data)
+        if response.status_code == 200:
+            logging.info(f'Информация отправлена на сервер: {response.json()}')
+        else:
+            logging.info(f'Ошибка при отправке уведомления на сервер: {response.status_code}')

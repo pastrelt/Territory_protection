@@ -23,6 +23,27 @@ class DefaultCameraProcessing(CameraProcessing):
         number_borders = 100000 # количество границ
         if edges.sum() > number_borders:
             logging.info(f'Камера {camera_index}: Объект обнаружен')
+            return True
             #self.send_alert_to_server()
         else:
             logging.info(f'Камера {camera_index}: Объект не обнаружен')
+            return False
+        # Заначка, на случай если решу подключить несколько стационарных камеры
+        # Еще надо решить тему с разными потоками на камеры
+        #
+        #
+        #
+        # global camera_request_count
+        #
+        #
+        # # Увеличение счетчика запросов для соответствующей камеры
+        # camera_request_count[str(camera_index)] += 1
+        #
+        # objective_control = 100# реагируем если событие повторяется более 100 раз, исключая случайности
+        # if camera_request_count[str(camera_index)] > objective_control:
+        #     # Инициализируем управление дроном
+        #     drone = drone_control(coordinates)
+        #     # Сброс счетчика после отправки команды дрону
+        #     camera_request_count[str(camera_index)] = 0
+        #
+        # return jsonify({'message': 'Уведомление получено'}), 200

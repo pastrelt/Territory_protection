@@ -1,14 +1,12 @@
 from abc import ABC, abstractmethod
 from Camerаs.DefaultCameraProcessing import *
-#from Chat import ServerInterface
+from Chat.ServerInterface import *
 import logging
-import requests  # Импортируем библиотеку для HTTP-запросов
 import time
 import cv2
 
 logging.basicConfig(level=logging.INFO, filemode="w", format='%(name)s - %(levelname)s - %(message)s')
 
-BASE_URL = 'http://localhost:5000'
 
 
 class AbstractCamera(ABC):
@@ -34,7 +32,9 @@ class AbstractCamera(ABC):
 
             ex_edges = DefaultCameraProcessing
             edges = ex_edges.process_frame(None,frame)
-            ex_edges.detect_obstacle(None, edges, self.camera_index)
+            penetration = ex_edges.detect_obstacle(None, edges, self.camera_index)
+            if penetration:
+                self.preparation_information()
 
             #edges = self.process_frame(frame)
             #self.detect_obstacle(edges)
@@ -53,19 +53,14 @@ class AbstractCamera(ABC):
         cv2.destroyAllWindows()
 
 
-    def send_alert_to_server(self):
+    def preparation_information(self):
         """
-        POST-запрос на сервер с координатами камеры
-        :param data: Список координат полета.
+        Подготовка информации
         """
         data = {
             'camera_index': self.camera_index,
             'coordinates': self.camera_coordinates
         }
-        response = requests.post(f'{BASE_URL}/ ', json=data)
-        if response.status_code == 200:
-            logging.info(f'Уведомление отправлено на сервер: {response.json()}')
-        else:
-            logging.info(f'Ошибка при отправке уведомления на сервер: {response.status_code}')
-
+        info = ServerInterface(data)
+        info.receiving_information()
 
