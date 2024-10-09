@@ -1,14 +1,23 @@
-from Overseer import *
 
 class MesagePool():
-    def db_photo(self):
-        pass
+    @app.route("/data", methods=["POST"])
+    def data(self):
+        """
+        Метод принмает данные от устройств.
+        """
+        data = request.get_json()
+        self.save_inforation(data)
+        return jsonify({'message': 'Уведомление получено'}), 200
 
-    def message_database(self):
-        pass
+    def save_inforation(self, data):
+        """
+        Метод записывает инфлормацию.
+        """
+        print("Информация записана")
 
-    def video_camera_1(self):# отправка информации для принятия решения по дрону в Overseer.py
-        pass
-
-    def logging(self):
-        pass
+    def set_information(self, dron_status):
+        """
+        Метод выдает инфлормацию.
+        """
+        data = {}
+        return data

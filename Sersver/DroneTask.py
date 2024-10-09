@@ -1,4 +1,5 @@
-from Overseer import *
+from Sersver.Overseer import *
+from Sersver.MesagePool import *
 
 
 class DroneTask(Overseer):# задача дрона
@@ -6,4 +7,7 @@ class DroneTask(Overseer):# задача дрона
         pass
 
     def information_processing(self):# обработка информации
+        pass
+
+    def solution(self): # решение
         pass

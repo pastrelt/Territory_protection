@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from MesagePool import
+from Sersver.MesagePool import *
 
 
 class Overseer(ABC):
@@ -11,4 +11,6 @@ class Overseer(ABC):
     def information_processing(self):# обработка информации
         pass
 
-    
+    @abstractmethod
+    def solution(self): # решение
+        pass
