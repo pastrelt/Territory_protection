@@ -63,5 +63,6 @@ class AbstractCamera(ABC):
             'camera_index': self.camera_index,
             'coordinates': self.camera_coordinates
         }
-        ServerInterface.receiving_information(data)
+        info = ServerInterface()
+        info.receiving_information(data)
 
