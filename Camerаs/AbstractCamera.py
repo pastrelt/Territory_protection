@@ -18,7 +18,7 @@ class AbstractCamera(ABC):
         self.camera_coordinates = camera_coordinates
         self.camera_stop_flag = camera_stop_flag
 
-    def start(self):
+    def start(self, CameraProcessing):
         """
         Метод запускает процесс захвата видео с камеры и обработки каждого кадра.
         """
@@ -30,9 +30,11 @@ class AbstractCamera(ABC):
             if not ret:
                 break
 
-            ex_edges = DefaultCameraProcessing
-            edges = ex_edges.process_frame(None,frame)
-            penetration = ex_edges.detect_obstacle(None, edges, self.camera_index)
+            edges = CameraProcessing.process_frame(None,frame)
+            penetration = CameraProcessing.detect_obstacle(None, edges, self.camera_index)
+            # ex_edges = DefaultCameraProcessing
+            # edges = ex_edges.process_frame(None,frame)
+            # penetration = ex_edges.detect_obstacle(None, edges, self.camera_index)
             if penetration:
                 self.preparation_information()
 
@@ -61,6 +63,5 @@ class AbstractCamera(ABC):
             'camera_index': self.camera_index,
             'coordinates': self.camera_coordinates
         }
-        info = ServerInterface(data)
-        info.receiving_information()
+        ServerInterface.receiving_information(data)
 
