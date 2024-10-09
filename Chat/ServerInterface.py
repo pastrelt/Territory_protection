@@ -8,10 +8,7 @@ class ServerInterface:
     """
     Класс отправки информации на сервер с разлчных устройств: камеры, дрона ...
     """
-    def __init__(self, data):
-        self.data = data
-
-    def sending_information(self):
+    def sending_information(self, data):
         """
         Отправка сообщений в архив сервера MesagePool
         """
