@@ -20,14 +20,18 @@ class DefaultCameraProcessing(CameraProcessing):
         """
         Метод анализирует обработанный кадр для обнаружения объектов.
         """
-        number_borders = 100000 # количество границ
+        number_borders = 100000# количество границ
         if edges.sum() > number_borders:
             logging.info(f'Камера {camera_index}: Объект обнаружен')
             return True
-            #self.send_alert_to_server()
         else:
             logging.info(f'Камера {camera_index}: Объект не обнаружен')
             return False
+
+
+
+
+
         # Заначка, на случай если решу подключить несколько стационарных камеры
         # Еще надо решить тему с разными потоками на камеры
         #

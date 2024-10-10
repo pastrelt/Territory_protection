@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
-from Camerаs.DefaultCameraProcessing import *
+from Camerаs.CameraProcessing import *
 from Chat.ServerInterface import *
 import logging
 import time
 import cv2
 
 logging.basicConfig(level=logging.INFO, filemode="w", format='%(name)s - %(levelname)s - %(message)s')
-
 
 
 class AbstractCamera(ABC):
@@ -18,34 +17,31 @@ class AbstractCamera(ABC):
         self.camera_coordinates = camera_coordinates
         self.camera_stop_flag = camera_stop_flag
 
-    def start(self, CameraProcessing):
+    def start(self, camera_processing: CameraProcessing):
         """
         Метод запускает процесс захвата видео с камеры и обработки каждого кадра.
         """
         logging.info(f'Камера {self.camera_index} запущена.')
 
         cap = cv2.VideoCapture(self.camera_index)
+        server_interface = ServerInterface()# создаем экземпляр класса единственный раз!
         while not self.camera_stop_flag:
             ret, frame = cap.read()
             if not ret:
                 break
 
-            edges = CameraProcessing.process_frame(None,frame)
-            penetration = CameraProcessing.detect_obstacle(None, edges, self.camera_index)
-            # ex_edges = DefaultCameraProcessing
-            # edges = ex_edges.process_frame(None,frame)
-            # penetration = ex_edges.detect_obstacle(None, edges, self.camera_index)
-            if penetration:
-                self.preparation_information()
+            edges = camera_processing.process_frame(frame)
+            penetration = camera_processing.detect_obstacle(edges, self.camera_index)
 
-            #edges = self.process_frame(frame)
-            #self.detect_obstacle(edges)
+            if penetration:
+                self.preparation_information(server_interface)
 
             cv2.imshow(f'Камера {self.camera_index}', edges)
 
-            if (cv2.getWindowProperty(f'Камера {self.camera_index}', cv2.WND_PROP_VISIBLE) < 1 or
-                    cv2.waitKey(1) & 0xFF == ord('q')):#  этот код используется для завершения работы программы или
-                                                # цикла, если окно камеры закрыто или пользователь нажал клавишу 'q'.
+            # Этот код используется для завершения работы программы или цикла,
+            # если окно камеры закрыто или пользователь нажал клавишу 'q'.
+            if (cv2.getWindowProperty(f'Камера {self.camera_index}', cv2.WND_PROP_VISIBLE) < 1
+                    or cv2.waitKey(1) & 0xFF == ord('q')):
                 self.camera_stop_flag = True
                 break
 
@@ -54,15 +50,12 @@ class AbstractCamera(ABC):
         cap.release()
         cv2.destroyAllWindows()
 
-
-    def preparation_information(self):
+    def preparation_information(self, server_interface: ServerInterface):
         """
-        Подготовка информации
+        Подготовка данных
         """
         data = {
             'camera_index': self.camera_index,
             'coordinates': self.camera_coordinates
         }
-        info = ServerInterface()
-        info.receiving_information(data)
-
+        server_interface.data_collection(data)

@@ -1,5 +1,4 @@
-from Sersver.MesagePool import *
-import requests  # Импортируем библиотеку для HTTP-запросов
+import requests# Импортируем библиотеку для HTTP-запросов
 
 BASE_URL = 'http://localhost:5000'
 
@@ -8,11 +7,11 @@ class ServerInterface:
     """
     Класс отправки информации на сервер с разлчных устройств: камеры, дрона ...
     """
-    def sending_information(self, data):
+    def data_collection(self, data):
         """
         Отправка сообщений в архив сервера MesagePool
         """
-        response = requests.post(f'{BASE_URL}/sending_information ', json=self.data)
+        response = requests.post(f'{BASE_URL}/data ', json=data)
         if response.status_code == 200:
             logging.info(f'Информация отправлена на сервер: {response.json()}')
         else:

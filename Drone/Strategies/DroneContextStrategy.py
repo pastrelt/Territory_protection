@@ -6,8 +6,8 @@ class DroneContextStrategy:
     Класс управления стратегиями полета дрона
     """
     def __init__(self, strategy: IFlightStrategy = None):
-        self.__strategy = strategy  # Текущая стратегия полета
-        self.__commands = []  # Список команд
+        self.__strategy = strategy# текущая стратегия полета
+        self.__commands = []# список команд
 
     def set_strategy(self, strategy: IFlightStrategy):
         """

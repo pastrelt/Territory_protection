@@ -1,16 +1,26 @@
 from Sersver.Overseer import *
 
 
-class DroneAdding(Overseer):# добавление дрона
-    def __init__(self, dron_status: Drone.Drone):
-        self.dron_status = dron_status
-
-    def obtaining_information(self):  # получение информации
-        smp = Sersver.MesagePool.save_inforation(self.dron_status)
-
-
-    def information_processing(self):  # обработка информации
+class DroneAdder(Overseer):# добавление дрона
+    def obtaining_information(self):# получение информации
         pass
 
-    def solution(self): # решение
+    def information_processing(self):# обработка информации
         pass
+
+    def solution(self):# решение
+        dron_status = Sersver.DroneInterface()
+
+if __name__ == "__main__":
+
+
+    # camera_index = 0
+    # camera_coordinates = {"latitude": 45.0, "longitude": 30.0}# Корректные координаты
+    # camera_stop_flag = False
+    #
+    # # Создаем экземпляр камеры
+    # simple_camera = SimpleStationaryCamerа(camera_index, camera_coordinates, camera_stop_flag)
+    #
+    # # Вызываем метод для получения информации от камеры
+    # camera_processing = DefaultCamerаProcessing()
+    # simple_camera.start(camera_processing)# Вызов метода родительского класса

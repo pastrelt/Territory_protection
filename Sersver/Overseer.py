@@ -3,6 +3,9 @@ from Sersver.MesagePool import *
 
 
 class Overseer(ABC):
+    def __init__(self, mesage_pool: MesagePool):
+        self.mesage_pool = mesage_pool
+
     @abstractmethod
     def obtaining_information(self):# получение информации
         pass
@@ -12,5 +15,5 @@ class Overseer(ABC):
         pass
 
     @abstractmethod
-    def solution(self): # решение
+    def solution(self):# решение
         pass

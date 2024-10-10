@@ -2,8 +2,8 @@ from Camerаs.AbstractCamera import *
 
 
 class RotationStationaryCamera(AbstractCamera):
-    def start(self):
-        pass
-
-    def sending_video_stream(self):
+    """
+    Класс описания работы конкретной стационарной камеры способной изменять угол обзора.
+    """
+    def camera_rotation(self):
         pass
