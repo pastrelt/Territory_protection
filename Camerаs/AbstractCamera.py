@@ -58,4 +58,4 @@ class AbstractCamera(ABC):
             'camera_index': self.camera_index,
             'coordinates': self.camera_coordinates
         }
-        server_interface.data_collection(data)
+        server_interface.sending_messages(data)

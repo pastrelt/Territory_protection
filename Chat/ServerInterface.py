@@ -5,9 +5,9 @@ BASE_URL = 'http://localhost:5000'
 
 class ServerInterface:
     """
-    Класс отправки информации на сервер с разлчных устройств: камеры, дрона ...
+    Класс отправки сообщений с разлчных устройств: камеры, дрона ... на сервер
     """
-    def data_collection(self, data):
+    def sending_messages(self, data):
         """
         Отправка сообщений в архив сервера MesagePool
         """

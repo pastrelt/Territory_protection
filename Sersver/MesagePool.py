@@ -8,7 +8,7 @@ class MesagePool():
     @app.route("/data", methods=["POST"])
     def data(self):
         """
-        Метод принмает данные от ServerInterface.
+        Метод принимает данные от ServerInterface.
         """
         data = request.get_json()
         self.save_inforation(data)
@@ -20,7 +20,7 @@ class MesagePool():
         """
         print("Информация записана")
 
-    def set_information(self, server_request):
+    def get_information(self, server_request):
         """
         Метод выдает инфлормацию.
         """

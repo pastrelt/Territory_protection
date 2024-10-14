@@ -4,16 +4,11 @@ from Sersver.MesagePool import *
 
 class Overseer(ABC):
     def __init__(self, mesage_pool: MesagePool):
-        self.mesage_pool = mesage_pool
+        self.__mesage_pool = mesage_pool
 
-    @abstractmethod
-    def obtaining_information(self):# получение информации
-        pass
+    def obtaining_information(self, server_request):# получение информации
+        return self.__mesage_pool.get_information(server_reques)
 
     @abstractmethod
     def information_processing(self):# обработка информации
-        pass
-
-    @abstractmethod
-    def solution(self):# решение
         pass

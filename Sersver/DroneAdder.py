@@ -2,17 +2,12 @@ from Sersver.Overseer import *
 
 
 class DroneAdder(Overseer):# добавление дрона
-    def obtaining_information(self):# получение информации
-        pass
-
     def information_processing(self):# обработка информации
         pass
 
-    def solution(self):# решение
-        dron_status = Sersver.DroneInterface()
 
 if __name__ == "__main__":
-
+    DroneAdder.information_processing()
 
     # camera_index = 0
     # camera_coordinates = {"latitude": 45.0, "longitude": 30.0}# Корректные координаты
