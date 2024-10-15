@@ -2,14 +2,14 @@ from Server.DroneInterface import *
 
 class DronePool:
     '''
-    Класс обеспечивает подготовку информации для передачи дрону
+    Класс обеспечивает подготовку информации для передачи дрону.
     '''
     def __init__(self):
         self.basic_drones_status = {'drone_1': True, 'drone_2': False, 'drone_3': True}
 
     def select_drone(self, drone_interface: DroneInterface):
         """
-        Метод помогает выбрать дрона, согласно его текущего статуса
+        Метод помогает выбрать дрона, согласно его текущего статуса.
         :param drone_interface:
         :return: real_status_drone
         """

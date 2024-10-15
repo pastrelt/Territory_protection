@@ -1,15 +1,15 @@
-import requests# Импортируем библиотеку для HTTP-запросов
+import requests# импортируем библиотеку для HTTP-запросов
 
 BASE_URL = 'http://localhost:5000'
 
 
 class ServerInterface:
     """
-    Класс отправки сообщений с разлчных устройств: камеры, дрона ... на сервер
+    Класс отправки сообщений с разлчных устройств: камеры, дрона ... на сервер.
     """
     def sending_messages(self, data):
         """
-        Отправка сообщений в архив сервера MesagePool
+        Отправка сообщений в архив сервера MesagePool.
         """
         response = requests.post(f'{BASE_URL}/data ', json=data)
         if response.status_code == 200:

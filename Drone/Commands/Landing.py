@@ -3,7 +3,7 @@ from ICommand import *
 
 class Landing(ICommand):
     """
-    Посадка
+    Посадка.
     """
     def __init__(self, drone: DronController):
         self.__drone = drone

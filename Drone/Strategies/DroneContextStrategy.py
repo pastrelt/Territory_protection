@@ -3,7 +3,7 @@ from IFlightStrategy import *
 
 class DroneContextStrategy:
     """
-    Класс управления стратегиями полета дрона
+    Класс управления стратегиями полета дрона.
     """
     def __init__(self, strategy: IFlightStrategy = None):
         self.__strategy = strategy# текущая стратегия полета

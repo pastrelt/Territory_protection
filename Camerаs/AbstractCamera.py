@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO, filemode="w", format='%(name)s - %(level
 
 class AbstractCamera(ABC):
     """
-    Класс описывает работу камеры
+    Класс описывает работу камеры.
     """
     def __init__(self, camera_index, camera_coordinates, camera_stop_flag):
         self.camera_index = camera_index
@@ -52,7 +52,7 @@ class AbstractCamera(ABC):
 
     def sending(self, server_interface: ServerInterface):
         """
-        Подготовка данных
+        Подготовка данных.
         """
         data = {
             'camera_index': self.camera_index,

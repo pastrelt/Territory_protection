@@ -3,7 +3,7 @@ from ..Drone import *
 
 class BaseDepartureStrategy(IFlightStrategy):
     """
-    Стратегия вылета с базовой точки
+    Стратегия вылета с базовой точки.
     """
     def execute(self, commands: list):
         logging.info(f'Выбрана стратеия: "Взлет с базы"')

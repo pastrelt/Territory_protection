@@ -3,7 +3,7 @@ from ICommand import *
 
 class Turn(ICommand):
     """
-    Поворот
+    Поворот.
     """
     def __init__(self, drone: DronController, degree: float):
         self.__drone = drone

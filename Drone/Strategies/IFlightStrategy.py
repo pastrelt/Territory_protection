@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 
 class IFlightStrategy(ABC):
     """
-    Реализуем патерн Стратегия
-    Интерфейс стратегии полета, определяет метод execute
+    Реализуем патерн Стратегия.
+    Интерфейс стратегии полета, определяет метод execute.
     """
     @abstractmethod
     def execute(self, commands: list):

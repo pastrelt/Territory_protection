@@ -8,5 +8,5 @@ class FlightChangeStrategy(IFlightStrategy):
     def execute(self, commands: list):
         logging.info(f'Выбрана стратеия: "Изменение маршрута"')
         for command in commands:
-            command.execute()
+            command.execute().
         return commands

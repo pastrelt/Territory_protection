@@ -3,7 +3,7 @@ from ICommand import *
 
 class MoveBack(ICommand):
     """
-    Движение назад
+    Движение назад.
     """
     def __init__(self, drone: DronController, coordinates):
         self.__drone = drone

@@ -4,7 +4,7 @@ BASE_URL = 'http://localhost:5001'
 
 class DroneInterface:
     """
-    Класс взаимодействия с дроном
+    Класс взаимодействия с дроном.
     """
     def drone_status(self, dron_id, data):
         try:

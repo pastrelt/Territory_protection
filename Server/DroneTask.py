@@ -5,22 +5,31 @@ from Server.DroneInterface import *
 
 class DroneTask(Overseer):
     """
-    Класс определяет есть ли информации для дрона и,
-     при ее наличии, выбирает дрона для отправки дрону информации на DroneInterface
+    Класс определяет есть ли информации для дрона.
+    При ее наличии выбирает дрона и отправляет ему сообщение.
     """
-    def information_camera(self):
-        data = self.obtaining_information(information_camera)
-        if data != False:
-            self.drone_interface.sending_messages(data)
+    def request(self, choose_drone: DronePool, drone_interface: DroneInterface):
+        """
+        Запрос информамции, которвя определит начало работы дрона.
+        """
+        for camera_index in range(self.pool_cameras):
+            camera_id = f"camera_{str(camera_index)}"
+            server_request = {camera_id: camera_index}
+            result = self.obtaining_information(server_request)
+            if result != False:# есть сообщение от камеры
+                choose_drone.select_drone(drone_interface)# получен дрон для запуска
+                drone_interface.sending_messages(result)#зотправляем информацию дрону
+                return
 
-    def choose_drone(self, choose_drone: DronePool, drone_interface: DroneInterface):
-        drone = choose_drone()
-        pass
+
 
 
 
 
 
 if __name__ == "__main__":
-#    DroneTask.information_camera()
-    pass
+    drone_task = DroneTask()
+    choose_drone = DronePool()
+    drone_interface = DroneInterface()
+
+    drone_task.request(choose_drone, drone_interface)
