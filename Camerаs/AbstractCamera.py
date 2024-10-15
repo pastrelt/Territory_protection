@@ -34,7 +34,7 @@ class AbstractCamera(ABC):
             penetration = camera_processing.detect_obstacle(edges, self.camera_index)
 
             if penetration:
-                self.preparation_information(server_interface)
+                self.sending(server_interface)
 
             cv2.imshow(f'Камера {self.camera_index}', edges)
 
@@ -50,7 +50,7 @@ class AbstractCamera(ABC):
         cap.release()
         cv2.destroyAllWindows()
 
-    def preparation_information(self, server_interface: ServerInterface):
+    def sending(self, server_interface: ServerInterface):
         """
         Подготовка данных
         """

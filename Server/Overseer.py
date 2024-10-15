@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from Sersver.MesagePool import *
+from Server.MesagePool import *
 
 
 class Overseer(ABC):
@@ -10,5 +10,5 @@ class Overseer(ABC):
         return self.__mesage_pool.get_information(server_reques)
 
     @abstractmethod
-    def information_processing(self):# обработка информации
+    def choose_drone(self):# обработка информации
         pass
